@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CandyMAUI.Pages.MainPage"
+              Shell.NavBarIsVisible="False"
+              BackgroundColor="#D2B48C">
+    
+    
+    <Grid RowDefinitions="Auto,*,Auto"
+      Padding="15,55">
+
+        <Image Grid.Row="0"
+       Source="slika1.png"
+       HeightRequest="450"
+       WidthRequest="450"
+       VerticalOptions="Center"
+        HorizontalOptions="Center"/>
+
+        <VerticalStackLayout Grid.Row="1"
+                      Spacing="20">
+
+            <Label Text="Okus Francuske na dohvat ruke"
+               FontSize="26"
+               HorizontalOptions="Center"
+               FontAttributes="Italic"/>
+
+            <Label Text="S ljubavlju prema tradiciji i pažljivim izborom sastojaka, donosimo vam francusku autentičnost."
+         FontSize="15"
+         LineHeight="1.2"/>
+
+            <Border StrokeShape="RoundRectangle 25"
+                StrokeThickness="3"
+                 BackgroundColor="#D2B48C"
+                 HeightRequest="50"
+                >
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" ></TapGestureRecognizer>
+                </Border.GestureRecognizers>
+
+                <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center"
+                                   Spacing="10">
+                    <Label Text="Pregled ponude"
+                       VerticalOptions="Center"
+                      FontSize="18"
+                       />
+                    <Image Source="right_arrow1.png"
+                      VerticalOptions="Center" 
+                        HeightRequest="30"></Image>
+
+
+                </HorizontalStackLayout>
+
+            </Border>
+        </VerticalStackLayout>
+
+
+
+
+
+
+    </Grid>
+</ContentPage>

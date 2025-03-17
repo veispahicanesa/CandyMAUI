@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CandyMAUI.Pages.DetailPage"
+                          xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+           xmlns:vm="clr-namespace:CandyMAUI.ViewModels"
+           xmlns:models="clr-namespace:CandyMAUI.Models"
+             Title=""
+             Shell.NavBarIsVisible="False"
+             x:DataType="vm:DetailsViewModel">
+
+    <ContentPage.Behaviors>
+
+        <toolkit:StatusBarBehavior StatusBarColor="white"
+                                  StatusBarStyle="DarkContent"/>
+
+    </ContentPage.Behaviors>
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="QuantityBtn" TargetType="ImageButton">
+                <Setter Property="HeightRequest" Value="40"/>
+                <Setter Property="WidthRequest" Value="40"/>
+                <Setter Property="VerticalOptions" Value="Center"/>
+                <Setter Property="Padding" Value="0"/>
+            </Style>
+              </ResourceDictionary>
+          </ContentPage.Resources>
+
+
+    <Grid>
+        <ScrollView Padding="15">
+            <VerticalStackLayout Spacing="15">
+
+                <Image Source="{Binding Candy.Image}"
+                       HeightRequest="200"
+                       WidthRequest="200"
+                       HorizontalOptions="Center"
+                        VerticalOptions="Center"/>
+                <Label Text="{Binding Candy.Name}"
+                       FontSize="20"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"/>
+
+                <Grid ColumnDefinitions="*,*">
+                    <Label Grid.Column="0"
+                                       Text="{Binding Price,StringFormat='  {0:N2} KM'}"
+                                       FontAttributes="Bold"
+                           FontSize="18"/>
+
+                    <HorizontalStackLayout Grid.Column="1"
+            HorizontalOptions="End"
+            Spacing="2"
+       
+            
+            VerticalOptions="Center">
+                        <Label Text="4"/>
+                        <Image Source="star.png"
+HeightRequest="15"
+WidthRequest="15">
+                            <Image.Behaviors>
+                                <toolkit:IconTintColorBehavior TintColor="#D2B48C"/>
+                            </Image.Behaviors>
+                        </Image>
+                    </HorizontalStackLayout>
+                </Grid>
+
+
+
+                <Label Text="Opis proizvoda"
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       Margin="0,10"/>
+
+                <Label FontSize="14"
+                       LineHeight="1.5"
+                       Text="Francuski kolači simbol su kulinarske umjetnosti, gdje se tradicija susreće s inovacijom kako bi se stvorili neodoljivi deserti koji očaravaju sva osjetila. Njihov karakterističan spoj bogatih okusa, raskošnih tekstura i precizno izrađenih detalja čini ih pravim remek-djelima. Svaki kolač priča priču o pažljivo biranim sastojcima – od svilenkasto glatke čokolade i kremastog vanilin punjenja do hrskavog bademovog biskvita i osvježavajućeg voćnog želea.
+
+Bez obzira na to birate li nježne makarone, prhke tartove ispunjene bogatim kremama ili delikatne ekler kolače prelivene glazurom koja se topi u ustima, ovi deserti nisu samo poslastica, već i iskustvo koje budi radost i osjećaj luksuza. Inspirisani bezvremenskim receptima i oplemenjeni modernim tehnikama, francuski kolači donose savršenu ravnotežu između okusa i estetike, čineći ih idealnim izborom za svakodnevno uživanje, ali i za najposebnije trenutke."/>
+
+            </VerticalStackLayout>
+        </ScrollView>
+        <Border StrokeThickness="0"
+                x:Name="bottomBox"
+                BackgroundColor="#D2B48C"
+                Margin="-1"
+                VerticalOptions="End"
+                HeightRequest="150"
+                Padding="15"
+                StrokeShape="{OnPlatform Android='RoundRectangle 30, 30, 0, 0',Default='RoundRectangle 0'}">
+
+            <Border.Shadow>
+
+                <Shadow Brush="#DEC29B"
+                        Radius="100"/>
+
+            </Border.Shadow>
+
+            <Grid RowDefinitions="Auto, Auto"
+                  ColumnDefinitions="*,*">
+
+
+                <Label Grid.Row="0"
+                       Grid.Column="0"
+                       Text="{Binding Candy.Amount,StringFormat='{0:N2} KM'}"
+                       FontSize="20"
+                       TextColor="White"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"/>
+
+                <Grid Grid.Row="0"
+                      Grid.Column="1"
+                      ColumnDefinitions="50, 40, 50"
+                      HorizontalOptions="End"
+                      VerticalOptions="Center">
+                    <ImageButton Grid.Column="0"
+                                 Source="close.png"
+                                  Style="{StaticResource QuantityBtn}"
+                                 Command="{Binding RemoveFromCartCommand}"
+                        BackgroundColor="Transparent">
+                        <ImageButton.Behaviors>
+
+                            <toolkit:IconTintColorBehavior TintColor="White"/>
+
+                        </ImageButton.Behaviors>
+                    </ImageButton>
+                    <Label Grid.Column="1"
+       Text="{Binding Candy.CartQuantity}"
+                           TextColor="White"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center"
+                           FontSize="25"/>
+
+                    <ImageButton Grid.Column="2"
+              Source="cross.png"
+                                   
+               Style="{StaticResource QuantityBtn}"
+                                 Command="{Binding AddToCartCommand}"
+                                  BackgroundColor="Transparent">
+                        
+                        <ImageButton.Behaviors>
+
+                            <toolkit:IconTintColorBehavior TintColor="White"/>
+
+                        </ImageButton.Behaviors>
+
+
+                    </ImageButton>
+
+                </Grid>
+
+                <Button Grid.Row="1"
+                        Grid.ColumnSpan="2"
+                        Text="Korpa"
+                        BackgroundColor="#C05E91"
+                        HorizontalOptions="Center"
+                        CornerRadius="22"
+                        Padding="80,10"
+                        VerticalOptions="End"
+                        Margin="0,20"
+                        Command="{Binding ViewCartCommand}"/>
+
+
+            </Grid>
+            
+          </Border>
+
+
+        <ImageButton Source="{OnPlatform Android='left.png',Default='back'}"
+                     VerticalOptions="Start"
+                     HorizontalOptions="Start"
+                     Margin="15"
+                     RotationY="{OnPlatform Android=180,Default=0}"
+                      HeightRequest="30" 
+                     WidthRequest="30"
+                     Clicked="ImageButton_Clicked">
+            <ImageButton.Behaviors>
+                <toolkit:IconTintColorBehavior TintColor="#C49A6C"/>
+            </ImageButton.Behaviors>
+        </ImageButton>
+    </Grid>
+</ContentPage>

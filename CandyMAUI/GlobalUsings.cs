@@ -1,0 +1,10 @@
+﻿global using System.Collections.Generic;
+global using System.Collections.ObjectModel;
+global using CandyMAUI.Pages;
+global using CandyMAUI.Models;
+global using CommunityToolkit.Mvvm.ComponentModel;
+global using CandyMAUI.ViewModels;
+global using CandyMAUI.Services;
+global using CommunityToolkit.Mvvm.Input;
+global using CommunityToolkit.Maui.Alerts;
+global using CommunityToolkit.Maui.Core;

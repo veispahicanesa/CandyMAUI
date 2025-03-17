@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="CandyMAUI.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+    xmlns:pages="clr-namespace:CandyMAUI.Pages"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.BackgroundColor="#D2B48C"
+    >
+
+    <Shell.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#D2B48C"
+                                   StatusBarStyle="LightContent"/>
+    </Shell.Behaviors>
+    
+    <ShellContent
+        Title=""
+        ContentTemplate="{DataTemplate pages:MainPage}"
+        Route="MainPage" />
+
+
+    <ShellContent
+     Title="Home"
+     ContentTemplate="{DataTemplate pages:HomePage}"
+     Route="HomePage" />
+
+    <ShellContent
+    Title="Cart"
+    ContentTemplate="{DataTemplate pages:CartPage}"
+    Route="CartPage" />
+    
+    
+
+</Shell>

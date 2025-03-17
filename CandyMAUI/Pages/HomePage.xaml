@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:vm="clr-namespace:CandyMAUI.ViewModels"
+             xmlns:models="clr-namespace:CandyMAUI.Models"
+             x:Class="CandyMAUI.Pages.HomePage"
+             Title="Douceurs de France"
+             Padding="15"
+             x:DataType="vm:HomeViewModel">
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="10">
+            <Border StrokeShape="RoundRectangle 10"
+                     StrokeThickness="0" 
+                    BackgroundColor="#D2B48C"
+                    VerticalOptions="Start"
+                    Padding="15">
+
+                <Grid ColumnDefinitions="*,150"
+                      RowDefinitions="*,Auto">
+
+                    <VerticalStackLayout Grid.Column="0"
+                                         Grid.Row="0"
+                                         Spacing="10">
+
+                        <Label Text="Najbolja ponuda"
+                               FontSize="25"
+                               FontAttributes="Bold"
+                               VerticalOptions="Center"/>
+
+                        <Label Text="Savršen izbor za vas po najboljim cjenama!"/>
+
+
+                    </VerticalStackLayout>
+
+                    <Button Grid.Row="1"
+                            Grid.Column="0"
+                            Text="Preuzmite sada"
+                            BackgroundColor="#C05E91"
+                            FontAttributes="Bold"
+                            CornerRadius="22"
+                            HorizontalOptions="Center"
+                            Padding="50,0"/>
+
+
+                    <Image Grid.RowSpan="2"
+                        Grid.Column="1"
+                           Source="pngimg_macaron_png56.png"
+                           HeightRequest="200"
+                           WidthRequest="200"/>
+
+
+                </Grid>
+
+
+            </Border>
+            <Border StrokeShape="RoundRectangle 20"
+                     StrokeThickness="2"
+                    Stroke="#D2B48C">
+
+
+                <Label Text="Pretraživanje.."
+                       TextColor="#D2B48C"
+                       FontSize="15"
+                       Padding="10,14"/>
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding GoToAllCandiesPageCommand}"
+                              CommandParameter="{x:Boolean true}"/>
+                </Border.GestureRecognizers>
+            </Border>
+
+            <BoxView HeightRequest="15"
+                     Color="Transparent"/>
+
+
+
+
+            <Grid ColumnDefinitions="*,*">
+                <Label Grid.Column="0"
+                       Text="Najprodavanije"
+                       VerticalOptions="End"
+                       FontSize="20"
+                       FontAttributes="Bold"/>
+
+                <Label Grid.Column="1"
+                   Text="Vidi sve"
+                       HorizontalOptions="End"
+                       VerticalOptions="End"
+                       TextDecorations="Underline">
+
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding GoToAllCandiesPageCommand}"
+                                              CommandParameter="{x:Boolean false}"/>
+                    </Label.GestureRecognizers>
+                    
+                </Label>
+            </Grid>
+
+
+            <FlexLayout BindableLayout.ItemsSource="{Binding Candies}"
+                        Wrap="Wrap">
+
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate x:DataType="models:Candy">
+                        <Border FlexLayout.Basis="50%"
+                            StrokeShape="RoundRectangle 10"
+                                StrokeThickness="0"
+                                    BackgroundColor="#D2B48C"
+                        Padding="10"
+                                Margin="2">
+                            <Grid RowDefinitions="150,Auto,Auto,Auto"
+                                  RowSpacing="5">
+                                <Image Grid.Row="0"
+                                       Source="{Binding Image}"
+                                       HeightRequest="150"
+                                       WidthRequest="130"/>
+
+                                <Label Grid.Row="1"
+                                       Text="{Binding Name}"
+                                       HorizontalOptions="Center"
+                                       FontSize="11"/>
+
+                                <Grid Grid.Row="2"
+                                      ColumnDefinitions="*,*">
+
+                                    <Label Grid.Column="0"
+                                           Text="{Binding Price,StringFormat='  {0:N2}'}"
+                                          VerticalOptions="Center"
+                                           FontAttributes="Bold"/>
+                                  
+                                    <HorizontalStackLayout Grid.Column="1"
+                                                           HorizontalOptions="End"
+                                                           Spacing="2"
+                                                      
+                                                           
+                                                           VerticalOptions="Center">
+                                        <Label Text="4"/>
+                                        <Image Source="star.png"
+                                               HeightRequest="15"
+                                               WidthRequest="15">
+                                            <Image.Behaviors>
+                                                <toolkit:IconTintColorBehavior TintColor="#D2B48C"/>
+                                            </Image.Behaviors>
+                                        </Image>
+                                    </HorizontalStackLayout>
+                                </Grid>
+                                <Button Grid.Row="3"
+                                        Text="Pogledaj više"
+                                        BackgroundColor="#C05E91"
+                                        TextColor="Black"
+                                        CornerRadius="22"
+                                        VerticalOptions="End"
+                                        HorizontalOptions="Center"
+                                        Padding="25,0"
+                                        Command="{Binding
+         Source={x:RelativeSource AncestorType={x:Type vm:HomeViewModel}},Path=GoToDetailsPageCommand}"
+                                        />
+                            </Grid>
+                            <Border.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding
+         Source={x:RelativeSource AncestorType={x:Type vm:HomeViewModel}},Path=GoToDetailsPageCommand}"
+                         CommandParameter="{Binding .}"  />
+                            </Border.GestureRecognizers>
+                        </Border>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+                
+            </FlexLayout>
+            
+            
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
